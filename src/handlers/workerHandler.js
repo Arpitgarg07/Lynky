@@ -1,12 +1,23 @@
-const Worker = require('../models/Worker');
+const Worker =
+    require('../models/Worker');
 
-const locations = require('../utils/locations');
+const locations =
+    require('../utils/locations');
 
-const services = require('../utils/services');
+const services =
+    require('../utils/services');
 
 const {
     setUserState
 } = require('../utils/userState');
+
+
+function normalizeText(text) {
+
+    return text
+        .trim()
+        .toLowerCase();
+}
 
 
 async function handleWorkerFlow({
@@ -17,6 +28,7 @@ async function handleWorkerFlow({
     currentState
 
 }) {
+
 
     // WORKER NAME STEP
     if (
@@ -122,7 +134,101 @@ async function handleWorkerFlow({
 `🌍 Select State
 
 1️⃣ Rajasthan
-2️⃣ Delhi`
+2️⃣ Delhi
+
+0️⃣ Other`
+        });
+
+        return true;
+    }
+
+
+
+    // CUSTOM STATE INPUT
+    if (
+        currentState?.step === 'awaiting_custom_state'
+    ) {
+
+        const customState =
+            normalizeText(text);
+
+
+        setUserState(sender, {
+            ...currentState,
+            state: customState,
+            step: 'awaiting_custom_city'
+        });
+
+
+        await sock.sendMessage(sender, {
+            text:
+`✍️ Please type your city name`
+        });
+
+        return true;
+    }
+
+
+
+    // CUSTOM CITY INPUT
+    if (
+        currentState?.step === 'awaiting_custom_city'
+    ) {
+
+        const customCity =
+            normalizeText(text);
+
+
+        setUserState(sender, {
+            ...currentState,
+            city: customCity,
+            step: 'awaiting_custom_locality'
+        });
+
+
+        await sock.sendMessage(sender, {
+            text:
+`✍️ Please type your locality name`
+        });
+
+        return true;
+    }
+
+
+
+    // CUSTOM LOCALITY INPUT
+    if (
+        currentState?.step === 'awaiting_custom_locality'
+    ) {
+
+        const customLocality =
+            normalizeText(text);
+
+
+        await Worker.create({
+
+            name: currentState.name,
+
+            phone: currentState.phone,
+
+            service: currentState.service,
+
+            state: currentState.state,
+
+            city: currentState.city,
+
+            locality: customLocality
+        });
+
+
+        await sock.sendMessage(sender, {
+            text:
+`✅ Registration Successful`
+        });
+
+
+        setUserState(sender, {
+            step: null
         });
 
         return true;
@@ -135,14 +241,31 @@ async function handleWorkerFlow({
         currentState?.step === 'awaiting_worker_state'
     ) {
 
+        // OTHER OPTION
+        if (text === '0') {
+
+            setUserState(sender, {
+                ...currentState,
+                step: 'awaiting_custom_state'
+            });
+
+            await sock.sendMessage(sender, {
+                text:
+`✍️ Please type your state name`
+            });
+
+            return true;
+        }
+
+
         let selectedState = '';
 
         if (text === '1') {
-            selectedState = 'Rajasthan';
+            selectedState = 'rajasthan';
         }
 
         else if (text === '2') {
-            selectedState = 'Delhi';
+            selectedState = 'delhi';
         }
 
 
@@ -165,16 +288,24 @@ async function handleWorkerFlow({
 
 
         const cities =
-            Object.keys(locations[selectedState]);
+            Object.keys(
+                locations[selectedState]
+            );
+
 
         let cityMessage =
-`🏙 Select City:\n\n`;
+`🏙 Select City\n\n`;
+
 
         cities.forEach((city, index) => {
 
             cityMessage +=
 `${index + 1}️⃣ ${city}\n`;
         });
+
+
+        cityMessage +=
+`\n0️⃣ Other`;
 
 
         await sock.sendMessage(sender, {
@@ -191,10 +322,28 @@ async function handleWorkerFlow({
         currentState?.step === 'awaiting_worker_city'
     ) {
 
+        // OTHER OPTION
+        if (text === '0') {
+
+            setUserState(sender, {
+                ...currentState,
+                step: 'awaiting_custom_city'
+            });
+
+            await sock.sendMessage(sender, {
+                text:
+`✍️ Please type your city name`
+            });
+
+            return true;
+        }
+
+
         const cities =
             Object.keys(
                 locations[currentState.state]
             );
+
 
         const selectedIndex =
             parseInt(text) - 1;
@@ -224,14 +373,20 @@ async function handleWorkerFlow({
         const localities =
             locations[currentState.state][selectedCity];
 
+
         let localityMessage =
-`📍 Select Locality:\n\n`;
+`📍 Select Locality\n\n`;
+
 
         localities.forEach((locality, index) => {
 
             localityMessage +=
 `${index + 1}️⃣ ${locality}\n`;
         });
+
+
+        localityMessage +=
+`\n0️⃣ Other`;
 
 
         await sock.sendMessage(sender, {
@@ -248,8 +403,26 @@ async function handleWorkerFlow({
         currentState?.step === 'awaiting_worker_locality'
     ) {
 
+        // OTHER OPTION
+        if (text === '0') {
+
+            setUserState(sender, {
+                ...currentState,
+                step: 'awaiting_custom_locality'
+            });
+
+            await sock.sendMessage(sender, {
+                text:
+`✍️ Please type your locality name`
+            });
+
+            return true;
+        }
+
+
         const localities =
             locations[currentState.state][currentState.city];
+
 
         const selectedIndex =
             parseInt(text) - 1;
@@ -303,4 +476,5 @@ async function handleWorkerFlow({
 }
 
 
-module.exports = handleWorkerFlow;
+module.exports =
+    handleWorkerFlow;

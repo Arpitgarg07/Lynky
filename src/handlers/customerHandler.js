@@ -1,8 +1,16 @@
-const locations = require('../utils/locations');
+const {
 
-const services = require('../utils/services');
+    getStates,
+    getCities,
+    getLocalities
 
-const Worker = require('../models/Worker');
+} = require('../utils/locationHelpers');
+
+const services =
+    require('../utils/services');
+
+const Worker =
+    require('../models/Worker');
 
 const {
     setUserState
@@ -47,14 +55,25 @@ async function handleCustomerFlow({
             service: selectedService
         });
 
+
+        // GET STATES FROM DATABASE
+        const states =
+            await getStates(selectedService);
+
+
+        let stateMessage =
+`🌍 Select State\n\n`;
+
+
+        states.forEach((state, index) => {
+
+            stateMessage +=
+`${index + 1}️⃣ ${state}\n`;
+        });
+
+
         await sock.sendMessage(sender, {
-            text:
-`✅ Selected Service: ${selectedService}
-
-🌍 Select State:
-
-1️⃣ Rajasthan
-2️⃣ Delhi`
+            text: stateMessage
         });
 
         return true;
@@ -67,15 +86,17 @@ async function handleCustomerFlow({
         currentState?.step === 'awaiting_state'
     ) {
 
-        let selectedState = '';
+        const states =
+            await getStates(
+                currentState.service
+            );
 
-        if (text === '1') {
-            selectedState = 'Rajasthan';
-        }
 
-        else if (text === '2') {
-            selectedState = 'Delhi';
-        }
+        const selectedIndex =
+            parseInt(text) - 1;
+
+        const selectedState =
+            states[selectedIndex];
 
 
         if (!selectedState) {
@@ -96,11 +117,17 @@ async function handleCustomerFlow({
         });
 
 
+        // GET CITIES FROM DATABASE
         const cities =
-            Object.keys(locations[selectedState]);
+            await getCities(
+                currentState.service,
+                selectedState
+            );
+
 
         let cityMessage =
-`🏙 Select City:\n\n`;
+`🏙 Select City\n\n`;
+
 
         cities.forEach((city, index) => {
 
@@ -124,9 +151,13 @@ async function handleCustomerFlow({
     ) {
 
         const cities =
-            Object.keys(
-                locations[currentState.state]
+            await getCities(
+
+                currentState.service,
+
+                currentState.state
             );
+
 
         const selectedIndex =
             parseInt(text) - 1;
@@ -153,11 +184,21 @@ async function handleCustomerFlow({
         });
 
 
+        // GET LOCALITIES FROM DATABASE
         const localities =
-            locations[currentState.state][selectedCity];
+            await getLocalities(
+
+                currentState.service,
+
+                currentState.state,
+
+                selectedCity
+            );
+
 
         let localityMessage =
-`📍 Select Locality:\n\n`;
+`📍 Select Locality\n\n`;
+
 
         localities.forEach((locality, index) => {
 
@@ -181,7 +222,15 @@ async function handleCustomerFlow({
     ) {
 
         const localities =
-            locations[currentState.state][currentState.city];
+            await getLocalities(
+
+                currentState.service,
+
+                currentState.state,
+
+                currentState.city
+            );
+
 
         const selectedIndex =
             parseInt(text) - 1;
@@ -205,35 +254,45 @@ async function handleCustomerFlow({
         const matchedWorkers =
             await Worker.find({
 
-                service: currentState.service,
+                service:
+                    currentState.service,
 
-                state: currentState.state,
+                state:
+                    currentState.state,
 
-                city: currentState.city,
+                city:
+                    currentState.city,
 
-                locality: selectedLocality
+                locality:
+                    selectedLocality
             });
 
 
+        // NO WORKERS
         if (matchedWorkers.length === 0) {
 
             await sock.sendMessage(sender, {
                 text:
-`❌ Service not available in this area right now.`
+`❌ No workers available right now`
             });
 
             return true;
         }
 
 
+        // FORMAT RESPONSE
         let response =
-`✅ Available Workers:\n\n`;
+`✅ Available Workers\n\n`;
+
 
         matchedWorkers.forEach((worker, index) => {
 
             response +=
 `${index + 1}. ${worker.name}
+
 📞 ${worker.phone}
+
+🛠 ${worker.service}
 
 `;
         });
@@ -244,6 +303,7 @@ async function handleCustomerFlow({
         });
 
 
+        // RESET STATE
         setUserState(sender, {
             step: null
         });
@@ -256,4 +316,5 @@ async function handleCustomerFlow({
 }
 
 
-module.exports = handleCustomerFlow;
+module.exports =
+    handleCustomerFlow;

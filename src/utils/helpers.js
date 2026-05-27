@@ -6,6 +6,15 @@ function getSelectedOption(text, array) {
     return array[index];
 }
 
+function normalizeText(text) {
+
+    return text
+        .trim()
+        .toLowerCase();
+}
+
 module.exports = {
+    normalizeText,
     getSelectedOption
 };
+

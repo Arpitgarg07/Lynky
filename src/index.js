@@ -2,25 +2,51 @@ require('dotenv').config();
 
 const express = require('express');
 
-const connectWhatsApp = require('./socket/whatsapp');
-const connectDB = require('./database/db');
+const connectDB =
+    require('./database/db');
+
+const connectWhatsApp =
+    require('./socket/whatsapp');
+
+
 const app = express();
 
-const PORT = process.env.PORT || 5000;
-
-
-// Middleware
 app.use(express.json());
 
 
-// Test Route
-app.get('/', (req, res) => {
-    res.send('Server is running...');
-});
+const PORT =
+    process.env.PORT || 5000;
 
-connectDB();
-connectWhatsApp();
-// Start Server
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+
+async function startServer() {
+
+    try {
+
+        // CONNECT DATABASE FIRST
+        await connectDB();
+
+        console.log('Database Connected');
+
+
+        // START WHATSAPP
+        await connectWhatsApp();
+
+        console.log('WhatsApp Started');
+
+
+        // START SERVER
+        app.listen(PORT, () => {
+
+            console.log(
+                `Server running on port ${PORT}`
+            );
+        });
+
+    } catch (error) {
+
+        console.log(error);
+    }
+}
+
+
+startServer();
