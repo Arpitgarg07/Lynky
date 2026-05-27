@@ -6,8 +6,9 @@ const {
 
 } = require('../utils/locationHelpers');
 
-const services =
-    require('../utils/services');
+const {
+    getServices
+} = require('../utils/serviceHelpers');
 
 const Worker =
     require('../models/Worker');
@@ -31,12 +32,15 @@ async function handleCustomerFlow({
     if (
         currentState?.step === 'awaiting_service'
     ) {
+const services =
+    await getServices();
 
-        const selectedIndex =
-            parseInt(text) - 1;
 
-        const selectedService =
-            services[selectedIndex];
+const selectedIndex =
+    parseInt(text) - 1;
+
+const selectedService =
+    services[selectedIndex];
 
 
         if (!selectedService) {

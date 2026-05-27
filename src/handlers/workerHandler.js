@@ -80,14 +80,17 @@ async function handleWorkerFlow({
         });
 
 
-        let serviceMessage =
+let serviceMessage =
 `🛠 Select Service\n\n`;
 
-        services.forEach((service, index) => {
+services.forEach((service, index) => {
 
-            serviceMessage +=
+    serviceMessage +=
 `${index + 1}️⃣ ${service}\n`;
-        });
+});
+
+serviceMessage +=
+`\n0️⃣ Other`;
 
 
         await sock.sendMessage(sender, {
@@ -104,11 +107,28 @@ async function handleWorkerFlow({
         currentState?.step === 'awaiting_worker_service'
     ) {
 
-        const selectedIndex =
-            parseInt(text) - 1;
+// OTHER OPTION
+if (text === '0') {
 
-        const selectedService =
-            services[selectedIndex];
+    setUserState(sender, {
+        ...currentState,
+        step: 'awaiting_custom_service'
+    });
+
+    await sock.sendMessage(sender, {
+        text:
+`✍️ Please type your service name`
+    });
+
+    return true;
+}
+
+
+const selectedIndex =
+    parseInt(text) - 1;
+
+const selectedService =
+    services[selectedIndex];
 
 
         if (!selectedService) {
@@ -234,7 +254,32 @@ async function handleWorkerFlow({
         return true;
     }
 
+// CUSTOM SERVICE INPUT
+if (
+    currentState?.step === 'awaiting_custom_service'
+) {
 
+    const customService =
+        normalizeText(text);
+
+    setUserState(sender, {
+        ...currentState,
+        service: customService,
+        step: 'awaiting_worker_state'
+    });
+
+    await sock.sendMessage(sender, {
+        text:
+`🌍 Select State
+
+1️⃣ Rajasthan
+2️⃣ Delhi
+
+0️⃣ Other`
+    });
+
+    return true;
+}
 
     // WORKER STATE STEP
     if (
@@ -261,11 +306,11 @@ async function handleWorkerFlow({
         let selectedState = '';
 
         if (text === '1') {
-            selectedState = 'rajasthan';
+            selectedState = 'Rajasthan';
         }
 
         else if (text === '2') {
-            selectedState = 'delhi';
+            selectedState = 'Delhi';
         }
 
 
@@ -287,10 +332,29 @@ async function handleWorkerFlow({
         });
 
 
-        const cities =
-            Object.keys(
-                locations[selectedState]
-            );
+// CHECK IF STATE EXISTS
+if (!locations[selectedState]) {
+
+    setUserState(sender, {
+        ...currentState,
+        state: selectedState,
+        step: 'awaiting_custom_city'
+    });
+
+    await sock.sendMessage(sender, {
+        text:
+`✍️ Please type your city name`
+    });
+
+    return true;
+}
+
+
+// GET CITIES
+const cities =
+    Object.keys(
+        locations[selectedState]
+    );
 
 
         let cityMessage =

@@ -5,7 +5,9 @@ const {
 } = require('@whiskeysockets/baileys');
 
 const qrcode = require('qrcode-terminal');
-
+const {
+    getServices
+} = require('../utils/serviceHelpers');
 const {
     setUserState,
     getUserState
@@ -123,19 +125,28 @@ if (
         step: 'awaiting_service'
     });
 
-    await sock.sendMessage(sender, {
-        text:
-`👋 Welcome to WorkerBot
+const services =
+    await getServices();
 
-Choose a service:
+let serviceMessage =
+`👋 Welcome
 
-1️⃣ Electrician
-2️⃣ Plumber
-3️⃣ Cleaner
+Choose a service\n\n`;
 
-👇 Want to join as worker?
-Type: join`
-    });
+services.forEach((service, index) => {
+
+    serviceMessage +=
+`${index + 1}️⃣ ${service}\n`;
+});
+
+serviceMessage +=
+`\n👇 Want to join as worker?
+Type: join`;
+
+
+await sock.sendMessage(sender, {
+    text: serviceMessage
+});
 
     return;
 }
