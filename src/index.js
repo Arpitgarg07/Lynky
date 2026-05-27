@@ -1,6 +1,7 @@
 require('dotenv').config();
 
-const express = require('express');
+const express =
+    require('express');
 
 const connectDB =
     require('./database/db');
@@ -18,23 +19,26 @@ const PORT =
     process.env.PORT || 5000;
 
 
+// ROOT ROUTE
+app.get('/', (req, res) => {
+
+    res.send('Bot Running');
+});
+
+
 async function startServer() {
 
     try {
 
-        // CONNECT DATABASE FIRST
+        // CONNECT DATABASE
         await connectDB();
 
-        console.log('Database Connected');
+        console.log(
+            'Database Connected'
+        );
 
 
-        // START WHATSAPP
-        await connectWhatsApp();
-
-        console.log('WhatsApp Started');
-
-
-        // START SERVER
+        // START EXPRESS SERVER FIRST
         app.listen(PORT, () => {
 
             console.log(
@@ -42,7 +46,13 @@ async function startServer() {
             );
         });
 
-    } catch (error) {
+
+        // START WHATSAPP
+        connectWhatsApp();
+
+    }
+
+    catch (error) {
 
         console.log(error);
     }
