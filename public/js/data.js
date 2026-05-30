@@ -1,4 +1,5 @@
 window.LYNKY_DATA = {
+  whatsappNumber: '919999999999',
   categories: [
     {
       name: 'Electricians',

@@ -1,6 +1,8 @@
 (() => {
   const data = window.LYNKY_DATA || {};
 
+  const defaultWhatsappNumber = data.whatsappNumber || '919999999999';
+
   const renderList = (container, items, template) => {
     if (!container) return;
     container.innerHTML = items.map(template).join('');
@@ -187,7 +189,7 @@
       const status = form.querySelector('[data-form-status]');
       form.addEventListener('submit', (event) => {
         event.preventDefault();
-        const whatsappNumber = form.dataset.whatsappNumber || '919999999999';
+        const whatsappNumber = form.dataset.whatsappNumber || defaultWhatsappNumber;
         const intent = form.dataset.whatsappIntent || 'New Lynky request';
         const formData = new FormData(form);
         const messageLines = [intent];
@@ -274,7 +276,7 @@
     if (!container) return;
     const team = data.team || [];
     renderList(container, team, (member) => `
-      <article class=\"card\">
+      <article class="card">
         <h3>${member.name}</h3>
         <p>${member.role}</p>
       </article>
@@ -292,6 +294,18 @@
     });
   };
 
+  const initWhatsAppLinks = () => {
+    const links = document.querySelectorAll('[data-whatsapp-link]');
+    if (!links.length) return;
+    links.forEach((link) => {
+      const message = link.dataset.whatsappMessage;
+      const url = message
+        ? `https://wa.me/${defaultWhatsappNumber}?text=${encodeURIComponent(message)}`
+        : `https://wa.me/${defaultWhatsappNumber}`;
+      link.setAttribute('href', url);
+    });
+  };
+
   initNav();
   initCategories();
   initStatsList();
@@ -305,4 +319,5 @@
   initLocations();
   initSearchHighlight();
   initTeam();
+  initWhatsAppLinks();
 })();
