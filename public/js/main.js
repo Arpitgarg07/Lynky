@@ -200,7 +200,7 @@
           messageLines.push(`${fieldLabel}: ${value}`);
         });
         const message = encodeURIComponent(messageLines.join('\n'));
-        window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank', 'noopener,noreferrer');
+        window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank', 'noopener noreferrer');
         if (status) {
           status.textContent = 'Opening WhatsApp to complete your request...';
         }
