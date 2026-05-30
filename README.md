@@ -1,4 +1,4 @@
-# 🚀 WorkerBot — Hyperlocal Worker Marketplace on WhatsApp
+# 🚀 Lynky — Hyperlocal Worker Marketplace on WhatsApp
 
 <div align="center">
 
@@ -15,7 +15,7 @@
 
 # 📌 Overview
 
-WorkerBot is a conversational marketplace built on top of WhatsApp.
+Lynky is a conversational marketplace built on top of WhatsApp.
 
 Instead of downloading apps, users can directly:
 
@@ -92,7 +92,7 @@ MongoDB Database (Workers)
 
 ## 🔄 Conversational Workflow Engine
 
-WorkerBot is not just a chatbot.
+Lynky is not just a chatbot.
 
 It works as a:
 
@@ -138,7 +138,9 @@ src/
 │
 ├── utils/
 │   ├── helpers.js
+│   ├── locationHelpers.js
 │   ├── locations.js
+│   ├── serviceHelpers.js
 │   ├── services.js
 │   └── userState.js
 │
@@ -152,9 +154,9 @@ src/
 ## 1️⃣ Clone Repository
 
 ```bash id="9q1xa2"
-git clone YOUR_REPOSITORY_URL
+git clone https://github.com/Arpitgarg07/Lynky.git
 
-cd workerbot
+cd Lynky
 ```
 
 ---
