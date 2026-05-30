@@ -187,8 +187,20 @@
       const status = form.querySelector('[data-form-status]');
       form.addEventListener('submit', (event) => {
         event.preventDefault();
+        const whatsappNumber = form.dataset.whatsappNumber || '919999999999';
+        const intent = form.dataset.whatsappIntent || 'New Lynky request';
+        const formData = new FormData(form);
+        const messageLines = [intent];
+        formData.forEach((value, key) => {
+          if (!value) return;
+          const label = key.replace(/[_-]/g, ' ')
+            .replace(/\b\w/g, (char) => char.toUpperCase());
+          messageLines.push(`${label}: ${value}`);
+        });
+        const message = encodeURIComponent(messageLines.join('\n'));
+        window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank', 'noopener');
         if (status) {
-          status.textContent = 'Thanks! We will reach out on WhatsApp within 24 hours.';
+          status.textContent = 'Opening WhatsApp to complete your request...';
         }
         form.reset();
       });
@@ -200,8 +212,17 @@
     if (!selects.length) return;
     const categories = data.categories || [];
     selects.forEach((select) => {
-      select.innerHTML = '<option value=\"\">Select a service</option>' +
-        categories.map((category) => `<option value=\"${category.name}\">${category.name}</option>`).join('');
+      select.textContent = '';
+      const placeholder = document.createElement('option');
+      placeholder.value = '';
+      placeholder.textContent = 'Select a service';
+      select.appendChild(placeholder);
+      categories.forEach((category) => {
+        const option = document.createElement('option');
+        option.value = category.name;
+        option.textContent = category.name;
+        select.appendChild(option);
+      });
     });
   };
 
@@ -211,8 +232,17 @@
 
     const locations = data.locations || [];
     stateSelects.forEach((stateSelect) => {
-      stateSelect.innerHTML = '<option value=\"\">Select state</option>' +
-        locations.map((location) => `<option value=\"${location.state}\">${location.state}</option>`).join('');
+      stateSelect.textContent = '';
+      const placeholder = document.createElement('option');
+      placeholder.value = '';
+      placeholder.textContent = 'Select state';
+      stateSelect.appendChild(placeholder);
+      locations.forEach((location) => {
+        const option = document.createElement('option');
+        option.value = location.state;
+        option.textContent = location.state;
+        stateSelect.appendChild(option);
+      });
 
       const cityTarget = stateSelect.getAttribute('data-city-target');
       const citySelect = cityTarget ? document.querySelector(cityTarget) : null;
@@ -221,8 +251,17 @@
       const updateCities = () => {
         const selected = locations.find((loc) => loc.state === stateSelect.value);
         const cities = selected ? selected.cities : [];
-        citySelect.innerHTML = '<option value=\"\">Select city</option>' +
-          cities.map((city) => `<option value=\"${city}\">${city}</option>`).join('');
+        citySelect.textContent = '';
+        const cityPlaceholder = document.createElement('option');
+        cityPlaceholder.value = '';
+        cityPlaceholder.textContent = 'Select city';
+        citySelect.appendChild(cityPlaceholder);
+        cities.forEach((city) => {
+          const option = document.createElement('option');
+          option.value = city;
+          option.textContent = city;
+          citySelect.appendChild(option);
+        });
       };
 
       stateSelect.addEventListener('change', updateCities);

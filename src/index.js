@@ -26,55 +26,16 @@ const PORT =
     process.env.PORT || 5000;
 
 
-app.get('/', (req, res) => {
+['services', 'worker', 'about', 'contact']
+    .forEach((page) => {
 
-    res.sendFile(
-        path.join(
-            publicDir,
-            'index.html'
-        )
-    );
-});
+        app.get(`/${page}`, (req, res) => {
 
-app.get('/services', (req, res) => {
-
-    res.sendFile(
-        path.join(
-            publicDir,
-            'services.html'
-        )
-    );
-});
-
-app.get('/worker', (req, res) => {
-
-    res.sendFile(
-        path.join(
-            publicDir,
-            'worker.html'
-        )
-    );
-});
-
-app.get('/about', (req, res) => {
-
-    res.sendFile(
-        path.join(
-            publicDir,
-            'about.html'
-        )
-    );
-});
-
-app.get('/contact', (req, res) => {
-
-    res.sendFile(
-        path.join(
-            publicDir,
-            'contact.html'
-        )
-    );
-});
+            res.redirect(
+                `/${page}.html`
+            );
+        });
+    });
 
 
 async function startServer() {
