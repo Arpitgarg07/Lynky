@@ -191,6 +191,18 @@ npm run dev
 
 ---
 
+# 🌐 Web Landing Page
+
+The premium landing page is built with React, Tailwind CSS, and Framer Motion.
+
+```bash
+cd web
+npm install
+npm run dev
+```
+
+---
+
 # 📲 WhatsApp Authentication
 
 When the server starts:
