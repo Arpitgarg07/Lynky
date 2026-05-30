@@ -1,4 +1,4 @@
-# 🚀 WorkerBot — Hyperlocal Worker Marketplace on WhatsApp
+# 🚀 Lynky — Hyperlocal Worker Marketplace on WhatsApp
 
 <div align="center">
 
@@ -7,7 +7,7 @@
 ![WhatsApp](https://img.shields.io/badge/WhatsApp-Bot-25D366?style=for-the-badge\&logo=whatsapp)
 ![Baileys](https://img.shields.io/badge/Baileys-WhatsApp_Web_API-blue?style=for-the-badge)
 
-### ⚡ WhatsApp-first hyperlocal marketplace for connecting customers with local workers instantly.
+### ⚡ WhatsApp-first marketplace connecting customers with local workers instantly.
 
 </div>
 
@@ -15,23 +15,23 @@
 
 # 📌 Overview
 
-WorkerBot is a conversational marketplace built on top of WhatsApp.
+Lynky is a conversational marketplace built on top of WhatsApp.
 
 Instead of downloading apps, users can directly:
 
-* find local workers
-* register as workers
-* browse services
-* connect hyperlocally
+* Find local workers
+* Register as workers
+* Browse services
+* Connect hyperlocally
 
 through a simple WhatsApp chat flow.
 
 The system is designed as a lightweight operational MVP focused on:
 
-* fast onboarding
-* conversational UX
-* hyperlocal matching
-* scalable backend architecture
+* Fast onboarding
+* Conversational UX
+* Hyperlocal matching
+* Scalable backend architecture
 
 ---
 
@@ -92,13 +92,13 @@ MongoDB Database (Workers)
 
 ## 🔄 Conversational Workflow Engine
 
-WorkerBot is not just a chatbot.
+Lynky is not just a chatbot.
 
 It works as a:
 
-* state-driven workflow engine
-* hyperlocal matching system
-* two-sided marketplace backend
+* State-driven workflow engine
+* Hyperlocal matching system
+* Two-sided marketplace backend
 
 Every interaction updates conversational state dynamically.
 
@@ -152,9 +152,9 @@ src/
 ## 1️⃣ Clone Repository
 
 ```bash id="9q1xa2"
-git clone YOUR_REPOSITORY_URL
+git clone https://github.com/Arpitgarg07/Lynky.git
 
-cd workerbot
+cd Lynky
 ```
 
 ---
@@ -279,11 +279,11 @@ The system is currently an MVP.
 
 Current limitations:
 
-* in-memory session state
-* no booking lifecycle
-* no payment integration
-* no worker availability tracking
-* no admin moderation dashboard
+* In-memory session state
+* No booking lifecycle
+* No payment integration
+* No worker availability tracking
+* No admin moderation dashboard
 
 These are intentionally postponed until workflow validation succeeds.
 
@@ -324,13 +324,13 @@ These are intentionally postponed until workflow validation succeeds.
 
 Build a unified hyperlocal marketplace where users can find:
 
-* electricians
-* plumbers
-* cleaners
-* cooks
-* mehndi artists
-* home services
-* local skilled workers
+* Electricians
+* Plumbers
+* Cleaners
+* Cooks
+* Mehndi artists
+* Home services
+* Local skilled workers
 
 through a lightweight WhatsApp-first experience optimized for Indian users.
 
