@@ -156,7 +156,7 @@ window.LYNKY_DATA = {
   ],
   team: [
     { name: 'Arpit Garg', role: 'Founder & Product' },
-    { name: 'Nisha Verma', role: 'Growth & Community' },
-    { name: 'Kunal Jain', role: 'Operations & Quality' }
+    { name: 'Nisha Verma', role: 'Growth and Community' },
+    { name: 'Kunal Jain', role: 'Operations and Quality' }
   ]
 };

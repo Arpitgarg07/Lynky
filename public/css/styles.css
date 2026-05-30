@@ -64,7 +64,7 @@ ul {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: rgba(248, 250, 252, 0.92);
+  background: rgba(248, 250, 252, 0.98);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(226, 232, 240, 0.6);
 }

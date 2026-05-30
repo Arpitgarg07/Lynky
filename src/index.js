@@ -19,23 +19,13 @@ const publicDir =
     path.join(__dirname, '..', 'public');
 
 app.use(express.json());
-app.use(express.static(publicDir));
+app.use(express.static(publicDir, { extensions: ['html'] }));
 
 
 const PORT =
     process.env.PORT || 5000;
 
 
-['services', 'worker', 'about', 'contact']
-    .forEach((page) => {
-
-        app.get(`/${page}`, (req, res) => {
-
-            res.redirect(
-                `/${page}.html`
-            );
-        });
-    });
 
 
 async function startServer() {

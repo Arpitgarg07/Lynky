@@ -193,12 +193,12 @@
         const messageLines = [intent];
         formData.forEach((value, key) => {
           if (!value) return;
-          const label = key.replace(/[_-]/g, ' ')
+          const fieldLabel = key.replace(/[_-]/g, ' ')
             .replace(/\b\w/g, (char) => char.toUpperCase());
-          messageLines.push(`${label}: ${value}`);
+          messageLines.push(`${fieldLabel}: ${value}`);
         });
         const message = encodeURIComponent(messageLines.join('\n'));
-        window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank', 'noopener');
+        window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank', 'noopener,noreferrer');
         if (status) {
           status.textContent = 'Opening WhatsApp to complete your request...';
         }
