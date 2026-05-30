@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Lynky</title>
+  <meta name="description" content="Reach Lynky support via WhatsApp, email, or our contact form." />
+  <meta property="og:title" content="Contact Lynky" />
+  <meta property="og:description" content="We respond quickly on WhatsApp for any customer or worker questions." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LYNKY001"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('js', new Date());
+    gtag('config', 'G-LYNKY001');
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="logo" href="/">L<span>ynky</span></a>
+      <nav class="nav-links" data-nav>
+        <a href="/">Home</a>
+        <a href="/services.html">Services</a>
+        <a href="/worker.html">Join as Worker</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-primary" href="https://wa.me/919999999999?text=Hi%20Lynky%2C%20I%20need%20help" target="_blank" rel="noreferrer">WhatsApp Support</a>
+      </div>
+      <button class="menu-button" data-nav-toggle aria-label="Toggle navigation">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow">Contact</span>
+        <h1 class="section-title">We respond fast on WhatsApp.</h1>
+        <p>Share your request and our team will connect you with the right worker or help with onboarding.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container split">
+        <form class="form-card" data-lynky-form>
+          <h2>Send a message</h2>
+          <div class="form-group">
+            <label for="contact-name">Name</label>
+            <input id="contact-name" name="name" type="text" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label for="contact-phone">Phone number</label>
+            <input id="contact-phone" name="phone" type="tel" placeholder="+91 98765 43210" required />
+          </div>
+          <div class="form-group">
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" name="message" rows="4" placeholder="Tell us what you need" required></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit">Send message</button>
+          <div class="form-status" data-form-status></div>
+        </form>
+        <div>
+          <div class="card" style="margin-bottom: 24px;">
+            <h3>Direct WhatsApp line</h3>
+            <p>Chat with us anytime for service requests or worker onboarding.</p>
+            <a class="btn whatsapp-button" style="margin-top: 16px;" href="https://wa.me/919999999999" target="_blank" rel="noreferrer">Chat on WhatsApp</a>
+          </div>
+          <div class="card">
+            <h3>Email</h3>
+            <p>hello@lynky.in</p>
+            <h3 style="margin-top: 16px;">Social</h3>
+            <div style="display: grid; gap: 8px; margin-top: 8px;">
+              <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a href="https://www.instagram.com" target="_blank" rel="noreferrer">Instagram</a>
+              <a href="https://x.com" target="_blank" rel="noreferrer">X (Twitter)</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="logo" href="/">L<span>ynky</span></a>
+        <p class="section-subtitle" style="margin-top: 12px;">We are here to help you hire with confidence.</p>
+      </div>
+      <div>
+        <strong>Support</strong>
+        <div style="margin-top: 10px; display: grid; gap: 8px;">
+          <a href="/services.html">Browse services</a>
+          <a href="/worker.html">Join as worker</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/data.js" defer></script>
+  <script src="/js/main.js" defer></script>
+</body>
+</html>

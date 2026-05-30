@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join as a Worker | Lynky</title>
+  <meta name="description" content="Register on Lynky and start receiving hyperlocal work opportunities." />
+  <meta property="og:title" content="Join Lynky as a Worker" />
+  <meta property="og:description" content="Get discovered by customers in your neighborhood via WhatsApp." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LYNKY001"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('js', new Date());
+    gtag('config', 'G-LYNKY001');
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="logo" href="/">L<span>ynky</span></a>
+      <nav class="nav-links" data-nav>
+        <a href="/">Home</a>
+        <a href="/services.html">Services</a>
+        <a href="/worker.html">Join as Worker</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-primary" href="https://wa.me/919999999999?text=Hi%20Lynky%2C%20I%20want%20to%20register%20as%20a%20worker" target="_blank" rel="noreferrer">WhatsApp Registration</a>
+      </div>
+      <button class="menu-button" data-nav-toggle aria-label="Toggle navigation">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow">Worker Registration</span>
+        <h1 class="section-title">Get discovered by nearby customers today.</h1>
+        <p>Join Lynky to receive verified leads, build your local reputation, and grow your daily earnings.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container split">
+        <form class="form-card" data-lynky-form>
+          <h2>Registration form</h2>
+          <p class="section-subtitle" style="margin: 10px 0 20px;">Share your details and we will activate your profile within 24 hours.</p>
+          <div class="form-group">
+            <label for="name">Full name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone number</label>
+            <input id="phone" name="phone" type="tel" placeholder="+91 98765 43210" required />
+          </div>
+          <div class="form-group">
+            <label for="service">Primary service</label>
+            <select id="service" name="service" data-service-select required></select>
+          </div>
+          <div class="form-group">
+            <label for="state">State</label>
+            <select id="state" name="state" data-state-select data-city-target="#city" required></select>
+          </div>
+          <div class="form-group">
+            <label for="city">City</label>
+            <select id="city" name="city" data-city-select required></select>
+          </div>
+          <div class="form-group">
+            <label for="locality">Locality / Area</label>
+            <input id="locality" name="locality" type="text" placeholder="Eg. Sector 44" required />
+          </div>
+          <div class="form-group">
+            <label for="experience">Years of experience</label>
+            <input id="experience" name="experience" type="number" min="0" placeholder="Eg. 4" />
+          </div>
+          <button class="btn btn-primary" type="submit">Submit registration</button>
+          <div class="form-status" data-form-status></div>
+        </form>
+        <div>
+          <div class="card" style="margin-bottom: 24px;">
+            <h3>Benefits of joining</h3>
+            <ul style="margin-top: 16px; display: grid; gap: 10px; color: var(--muted);">
+              <li>• Instant WhatsApp leads from nearby customers</li>
+              <li>• Verified badge to build trust</li>
+              <li>• Flexible schedule and repeat bookings</li>
+              <li>• No advertising cost or marketplace fees</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Trust badges</h3>
+            <p>We feature workers who complete verification, maintain ratings, and respond on time.</p>
+            <div class="badge-list" style="margin-top: 16px;">
+              <span class="badge">ID Verified</span>
+              <span class="badge">Local Address Proof</span>
+              <span class="badge">Top Rated</span>
+              <span class="badge">Fast Response</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="logo" href="/">L<span>ynky</span></a>
+        <p class="section-subtitle" style="margin-top: 12px;">Grow your business with hyperlocal visibility.</p>
+      </div>
+      <div>
+        <strong>Support</strong>
+        <div style="margin-top: 10px; display: grid; gap: 8px;">
+          <a href="/contact.html">Contact team</a>
+          <a href="https://wa.me/919999999999" target="_blank" rel="noreferrer">WhatsApp Registration</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/data.js" defer></script>
+  <script src="/js/main.js" defer></script>
+</body>
+</html>

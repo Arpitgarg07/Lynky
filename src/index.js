@@ -3,6 +3,9 @@ require('dotenv').config();
 const express =
     require('express');
 
+const path =
+    require('path');
+
 const connectDB =
     require('./database/db');
 
@@ -12,17 +15,65 @@ const connectWhatsApp =
 
 const app = express();
 
+const publicDir =
+    path.join(__dirname, '..', 'public');
+
 app.use(express.json());
+app.use(express.static(publicDir));
 
 
 const PORT =
     process.env.PORT || 5000;
 
 
-// ROOT ROUTE
 app.get('/', (req, res) => {
 
-    res.send('Bot Running');
+    res.sendFile(
+        path.join(
+            publicDir,
+            'index.html'
+        )
+    );
+});
+
+app.get('/services', (req, res) => {
+
+    res.sendFile(
+        path.join(
+            publicDir,
+            'services.html'
+        )
+    );
+});
+
+app.get('/worker', (req, res) => {
+
+    res.sendFile(
+        path.join(
+            publicDir,
+            'worker.html'
+        )
+    );
+});
+
+app.get('/about', (req, res) => {
+
+    res.sendFile(
+        path.join(
+            publicDir,
+            'about.html'
+        )
+    );
+});
+
+app.get('/contact', (req, res) => {
+
+    res.sendFile(
+        path.join(
+            publicDir,
+            'contact.html'
+        )
+    );
 });
 
 

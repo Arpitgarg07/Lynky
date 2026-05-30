@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services | Lynky</title>
+  <meta name="description" content="Browse every Lynky service category and filter by location in seconds." />
+  <meta property="og:title" content="Lynky Services" />
+  <meta property="og:description" content="Explore verified services with hyperlocal filtering." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LYNKY001"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('js', new Date());
+    gtag('config', 'G-LYNKY001');
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="logo" href="/">L<span>ynky</span></a>
+      <nav class="nav-links" data-nav>
+        <a href="/">Home</a>
+        <a href="/services.html">Services</a>
+        <a href="/worker.html">Join as Worker</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-outline" href="/worker.html">Join as Worker</a>
+        <a class="btn btn-primary" href="https://wa.me/919999999999?text=Hi%20Lynky%2C%20show%20me%20services%20near%20me" target="_blank" rel="noreferrer">Find Worker</a>
+      </div>
+      <button class="menu-button" data-nav-toggle aria-label="Toggle navigation">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow">All Lynky Services</span>
+        <h1 class="section-title">Everything you need, hyperlocal and verified.</h1>
+        <p>Search across categories, filter by city, and start chatting with local workers instantly.</p>
+        <div class="hero-search" style="margin-top: 24px;">
+          <input type="text" placeholder="Search services" data-category-search data-category-target="#services-grid" data-search-forward />
+          <select style="min-width: 180px; border: none; background: transparent;" data-state-select></select>
+          <a class="btn btn-secondary" href="https://wa.me/919999999999?text=Hi%20Lynky%2C%20help%20me%20find%20a%20service" target="_blank" rel="noreferrer">Search</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Browse categories</h2>
+        <p class="section-subtitle">New service categories can be added anytime based on local demand.</p>
+        <div class="grid grid-4" id="services-grid" data-category-grid="all"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container split">
+        <div>
+          <h2 class="section-title">Popular right now</h2>
+          <div class="service-list" data-popular-services></div>
+        </div>
+        <div>
+          <h2 class="section-title">Recently added</h2>
+          <div class="service-list" data-recent-services></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="logo" href="/">L<span>ynky</span></a>
+        <p class="section-subtitle" style="margin-top: 12px;">Service discovery that feels instant and premium.</p>
+      </div>
+      <div>
+        <strong>Explore</strong>
+        <div style="margin-top: 10px; display: grid; gap: 8px;">
+          <a href="/">Home</a>
+          <a href="/worker.html">Worker Registration</a>
+          <a href="/about.html">About</a>
+        </div>
+      </div>
+      <div>
+        <strong>WhatsApp</strong>
+        <div style="margin-top: 10px; display: grid; gap: 8px;">
+          <a href="https://wa.me/919999999999" target="_blank" rel="noreferrer">Chat with Lynky</a>
+          <a href="/contact.html">Support</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/data.js" defer></script>
+  <script src="/js/main.js" defer></script>
+</body>
+</html>
